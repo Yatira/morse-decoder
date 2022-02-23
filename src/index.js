@@ -37,7 +37,7 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
+function decode(MORSE_TABLE) {
     // write your solution here
 
     
@@ -62,4 +62,29 @@ function decode(expr) {
 
 module.exports = {
     decode
+}
+
+
+let result = "";
+  let arr = expr.split("");
+
+  for (let i = 0; i < expr.length / 10; i++) {
+    let letter = "";
+    let char = arr.slice(i * 10, (i + 1) * 10);
+    for (let x = 0; x < char.length / 2; x++) {
+      let dot = char.slice(x * 2, (x + 1) * 2).join("");
+      if (dot == "**") {
+        letter = " ";
+        break;
+      }
+      if (dot == "10") {
+        letter += ".";
+      }
+      if (dot == "11") {
+        letter += "-";
+      }
+    }
+    result += MORSE_TABLE[letter] ? MORSE_TABLE[letter] : " ";
+  }
+  return result;
 }
