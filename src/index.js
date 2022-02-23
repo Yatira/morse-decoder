@@ -37,23 +37,27 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
- function decode (expr){
-    let words = expr.split("   ");
-    let string = ""
-    
-    for (let i in words){
-      if(words[i] != ''){
-        let word = words[i].split(" ");
-        for(let j in word){
-          if(word[j] != ''){
-            string += MORSE_CODE[word[j]];
-          }
+function decode(expr) {
+    const next_ten_char = /.{10}/g
+    const bin_array = expr.match(next_ten_char);
+
+    const morse_array = [];
+    bin_array.forEach(function (element) {
+        element = element.replace(/10/g,'.').replace(/11/g,'-').replace(/00/g,'');
+        morse_array.push(element);
+    });
+
+    let string = '';
+    morse_array.forEach(function (element) {
+        if(element === '**********'){
+            string += ' ';
+        } else{
+            string += MORSE_TABLE[element];
         }
-        if(i < words.length-1){
-          string += " "
-        }
-      }  
-    }   
+    });
+
+    return string;
+}
 
 module.exports = {
     decode
