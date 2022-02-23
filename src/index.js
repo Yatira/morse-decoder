@@ -39,6 +39,26 @@ const MORSE_TABLE = {
 
 function decode(expr) {
     // write your solution here
+
+    decodeMorse = function(MORSE_TABLE){
+        MORSE_TABLE = MORSE_TABLE.trim();
+        let refinedData = MORSE_TABLE.split('   ');
+        let result = [];
+        
+        for (let i = 0; i < refinedData.length; i++) {
+          let temp = refinedData[i].split(' ');
+          for (let j = 0; j < temp.length; j++) {
+            if (MORSE_TABLE[temp[j]]) {
+              result.push(MORSE_TABLE[temp[j]]);
+            }
+          }
+          
+          if (i !== refinedData.length - 1) {
+          result.push(' ');
+          }
+        }
+        return result.join('');
+      }
 }
 
 module.exports = {
