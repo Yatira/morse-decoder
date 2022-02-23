@@ -37,20 +37,24 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-function decode(expr) {
-    // write your solution here
-    return expr
-    .split('   ')
-    .map(
-      elem => elem
-        .split(' ')
-        .map(
-          b => MORSE_TABLE[b]
-        ).join('')
-    ).join(' ');
-}
+decode = function (morseCode){
+    let words = morseCode.split("   ");
+    let string = ""
     
-       
+    for (let i in words){
+      if(words[i] != ''){
+        let word = words[i].split(" ");
+        for(let j in word){
+          if(word[j] != ''){
+            string += MORSE_CODE[word[j]];
+          }
+        }
+        if(i < words.length-1){
+          string += " "
+        }
+      }  
+    }   
+    
 module.exports = {
     decode
 }
