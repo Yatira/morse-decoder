@@ -37,8 +37,8 @@ const MORSE_TABLE = {
     '-----':  '0',
 };
 
-decode = function (morseCode){
-    let words = morseCode.split("   ");
+ function decode (expr){
+    let words = expr.split("   ");
     let string = ""
     
     for (let i in words){
@@ -54,7 +54,7 @@ decode = function (morseCode){
         }
       }  
     }   
-    
+
 module.exports = {
     decode
 }
